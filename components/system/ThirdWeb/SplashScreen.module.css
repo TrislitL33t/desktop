@@ -1,19 +1,36 @@
-/* src/components/system/ThirdWeb/SplashScreen.module.css */
 .splashScreen {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #282c34;
-  color: white;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
   text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
-.connectButton {
-  padding: 1rem;
-  font-size: 1.5rem;
-  background-color: #61dafb;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
+.splashScreen h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.splashScreen p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.splashScreen .connectButton {
+  margin-top: 1.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

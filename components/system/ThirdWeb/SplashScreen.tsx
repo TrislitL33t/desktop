@@ -1,7 +1,7 @@
-/* eslint-disable import/no-duplicates */
+/* eslint-disable */
 import type React from "react";
 import { useEffect, useState } from "react";
-/* eslint-enable import/no-duplicates */
+/* eslint-enable */
 import { ConnectButton, useActiveWallet } from "thirdweb/react";
 import { hasAccess } from "components/system/ThirdWeb/AccessContract";
 import { client, wallets } from "components/system/ThirdWeb/thirdWebClient";
@@ -33,13 +33,12 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
         }
 
         setWalletAddress(accountDetails.address);
-        // console.log("Wallet Address:", accountDetails.address);
 
         const access = await hasAccess(accountDetails.address);
         if (access) {
           onConnect();
         } else {
-          setError("You do not own the required NFT.");
+          setError("You do not own the required OG L33tpass.");
         }
       } catch (error_) {
         console.error("Error checking access:", error_);
@@ -56,21 +55,49 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
   }, [wallet, onConnect]);
 
   if (checkingAccess) {
-    return <div className={styles.splashScreen}>Checking access...</div>;
+    return (
+      <div className={`${styles.splashScreen} ${styles.fadeIn}`}>
+        Checking access...
+      </div>
+    );
   }
 
   if (error) {
     return (
-      <div className={styles.splashScreen}>
-        {error}
-        <ConnectButton client={client} wallets={wallets} />
+      <div className={`${styles.splashScreen} ${styles.fadeIn}`}>
+        <h1>Welcome L33t</h1>
+        <p>You need an OG L33tpass to log in.</p>
+        <div>{error}</div>
+        <ConnectButton
+          client={client}
+          connectModal={{
+            privacyPolicyUrl: "https://pplink.com",
+            requireApproval: true,
+            showThirdwebBranding: false,
+            size: "compact",
+            termsOfServiceUrl: "https://toslink.com",
+          }}
+          wallets={wallets}
+        />
       </div>
     );
   }
 
   return (
-    <div className={styles.splashScreen}>
-      <ConnectButton client={client} wallets={wallets} />
+    <div className={`${styles.splashScreen} ${styles.fadeIn}`}>
+      <h1>Welcome L33t</h1>
+      <p>You need an OG L33tpass to log in.</p>
+      <ConnectButton
+        client={client}
+        connectModal={{
+          privacyPolicyUrl: "https://pplink.com",
+          requireApproval: true,
+          showThirdwebBranding: false,
+          size: "compact",
+          termsOfServiceUrl: "https://toslink.com",
+        }}
+        wallets={wallets}
+      />
       <div>
         {walletAddress ? `Connected: ${walletAddress}` : "No wallet connected"}
       </div>
