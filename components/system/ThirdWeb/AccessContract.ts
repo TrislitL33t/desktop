@@ -2,10 +2,10 @@ import { Alchemy, Network } from "alchemy-sdk";
 
 const alchemy = new Alchemy({
   apiKey: process.env.ALCHEMY_API_KEY,
-  network: Network.BASE_MAINNET, // Specify the correct network
+  network: Network.BASE_SEPOLIA, // Specify the correct network
 });
 
-const specificContractAddress = "0x36E65b252a1Ac8d15B68A1CA92f3c7a26285A334"; // Your NFT contract address
+const specificContractAddress = "0xfa552ff246479cc487f98aca01a0001d5a869c47"; // Your NFT contract address
 
 export async function hasAccess(walletAddress: string): Promise<boolean> {
   try {
