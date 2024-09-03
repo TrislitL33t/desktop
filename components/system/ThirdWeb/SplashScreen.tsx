@@ -72,6 +72,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
           client={client}
           connectModal={{
             privacyPolicyUrl: "https://pplink.com",
+            requireApproval: true,
             showThirdwebBranding: false,
             size: "compact",
             termsOfServiceUrl: "https://toslink.com",
@@ -90,6 +91,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
         client={client}
         connectModal={{
           privacyPolicyUrl: "https://pplink.com",
+          requireApproval: true,
           showThirdwebBranding: false,
           size: "compact",
           termsOfServiceUrl: "https://toslink.com",
