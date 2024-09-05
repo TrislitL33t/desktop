@@ -16,6 +16,7 @@ import {
   setSkinData,
   tracksFromPlaylist,
   updateWebampPosition,
+  addTracksToWebamp,
 } from "components/apps/Webamp/functions";
 import { type SkinData, type WebampCI } from "components/apps/Webamp/types";
 import useFileDrop from "components/system/Files/FileManager/useFileDrop";
@@ -86,31 +87,22 @@ const useWebamp = (id: string): Webamp => {
       { initialSkin, initialTracks }: Options
     ) => {
       const handleUrl = async (): Promise<Track[]> => {
-        // eslint-disable-next-line no-alert
         const externalUrl = prompt(
           "Enter an Internet location to open here:\nFor example: https://server.com/playlist.m3u"
         );
-
         if (externalUrl) {
           const playlistExtension = getExtension(externalUrl);
-
           if (AUDIO_PLAYLIST_EXTENSIONS.has(playlistExtension)) {
             return tracksFromPlaylist(
               await (await fetch(externalUrl, HIGH_PRIORITY_REQUEST)).text(),
               playlistExtension
             );
           }
-
-          return [
-            {
-              duration: 0,
-              url: externalUrl,
-            },
-          ];
+          return [{ duration: 0, url: externalUrl }];
         }
-
         return [];
       };
+
       const webamp = new window.Webamp({
         ...BASE_WEBAMP_OPTIONS,
         handleAddUrlEvent: handleUrl,
@@ -125,9 +117,9 @@ const useWebamp = (id: string): Webamp => {
         initialSkin,
         initialTracks,
       } as Options) as WebampCI;
+
       const setupElements = (): void => {
         const webampElement = getWebampElement();
-
         if (webampElement) {
           const mainWindow =
             webampElement.querySelector<HTMLDivElement>(MAIN_WINDOW);
@@ -160,18 +152,16 @@ const useWebamp = (id: string): Webamp => {
           containerElement.append(webampElement);
         }
       };
+
       const updatePosition = (): void => {
         window.clearInterval(windowPositionDebounceRef.current);
         windowPositionDebounceRef.current = window.setTimeout(() => {
           const mainWindow =
             getWebampElement()?.querySelector<HTMLDivElement>(MAIN_WINDOW);
           const { x = 0, y = 0 } = mainWindow?.getBoundingClientRect() || {};
-
           setWindowStates((currentWindowStates) => ({
             ...currentWindowStates,
-            [id]: {
-              position: { x, y },
-            },
+            [id]: { position: { x, y } },
           }));
         }, TRANSITIONS_IN_MILLISECONDS.WINDOW);
       };
@@ -181,16 +171,12 @@ const useWebamp = (id: string): Webamp => {
         webamp.onMinimize(() => onMinimize()),
         webamp.onTrackDidChange((track) => {
           const { milkdrop, windows } = webamp.store.getState();
-
           if (windows?.genWindows?.milkdrop?.open && milkdrop?.butterchurn) {
             loadButterchurnPreset(webamp);
           }
-
           window.clearInterval(metadataProviderRef.current);
-
           if (track?.url) {
             const getMetadata = getMetadataProvider(track.url);
-
             if (getMetadata) {
               const updateTrackInfo = async (): Promise<void> => {
                 const {
@@ -198,12 +184,10 @@ const useWebamp = (id: string): Webamp => {
                   playlist: { currentTrack = -1 } = {},
                   tracks,
                 } = webamp.store.getState() || {};
-
                 if (closed) {
                   window.clearInterval(metadataProviderRef.current);
                 } else if (tracks[currentTrack]) {
                   const metaData = await getMetadata?.();
-
                   if (metaData) {
                     webamp.store.dispatch({
                       type: "SET_MEDIA_TAGS",
@@ -214,26 +198,11 @@ const useWebamp = (id: string): Webamp => {
                   }
                 }
               };
-
               updateTrackInfo();
               metadataProviderRef.current = window.setInterval(
                 updateTrackInfo,
                 30 * MILLISECONDS_IN_SECOND
               );
-            } else {
-              const { playlist: { currentTrack = -1 } = {}, tracks } =
-                webamp.store.getState() || {};
-              const { artist = "", title: trackTitle = "" } =
-                tracks?.[currentTrack] || {};
-
-              if (trackTitle || artist) {
-                title(
-                  id,
-                  trackTitle && artist
-                    ? `${artist} - ${trackTitle}`
-                    : trackTitle || artist
-                );
-              }
             }
           } else {
             title(id, processDirectory.Webamp.title);
@@ -244,7 +213,6 @@ const useWebamp = (id: string): Webamp => {
             await mkdirRecursive(SAVE_PATH);
             updateFolder(dirname(SAVE_PATH));
           }
-
           writeFile(SKIN_DATA_PATH, JSON.stringify(data), true);
           updateFolder(SAVE_PATH, basename(SKIN_DATA_PATH));
         }),
@@ -256,7 +224,7 @@ const useWebamp = (id: string): Webamp => {
 
       if (initialSkin) cleanBufferOnSkinLoad(webamp, initialSkin.url);
 
-      webamp.renderWhenReady(containerElement).then(() => {
+      webamp.renderWhenReady(containerElement).then(async () => {
         closeEqualizer(webamp);
         enabledMilkdrop(webamp);
         loadMilkdropWhenNeeded(webamp);
@@ -264,6 +232,9 @@ const useWebamp = (id: string): Webamp => {
         setupElements();
 
         if (initialTracks) webamp.play();
+
+        // **Add tracks after Webamp is initialized**
+        await addTracksToWebamp(webamp);
       });
 
       window.WebampGlobal = webamp;

@@ -67,6 +67,9 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
       <div className={`${styles.splashScreen} ${styles.fadeIn}`}>
         <h1>Welcome L33t</h1>
         <p>You need an OG L33tpass to log in.</p>
+        <div className={styles.enterText}>
+          Enter<span className={styles.cursor}>|</span>
+        </div>
         <div>{error}</div>
         <ConnectButton
           client={client}
@@ -87,6 +90,9 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
     <div className={`${styles.splashScreen} ${styles.fadeIn}`}>
       <h1>Welcome L33t</h1>
       <p>You need an OG L33tpass to log in.</p>
+      <div className={styles.enterText}>
+        Enter<span className={styles.cursor}>|</span>
+      </div>
       <ConnectButton
         client={client}
         connectModal={{

@@ -5,6 +5,10 @@
   align-items: center;
   height: 100vh;
   background-color: #1e1e1e;
+  background-image: url("/images/ogl33tsplash.png"); /* Path to your PNG image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #ffffff;
   font-family: Arial, sans-serif;
   text-align: center;
@@ -24,6 +28,29 @@
 
 .splashScreen .connectButton {
   margin-top: 1.5rem;
+}
+
+/* Blocky "Enter" text with blinking cursor */
+.splashScreen .enterText {
+  font-size: 2rem;
+  font-family: "Courier New", monospace; /* Blocky text style */
+  color: limegreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splashScreen .cursor {
+  font-size: 2rem;
+  font-family: "Courier New", monospace;
+  color: limegreen;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes fadeIn {
