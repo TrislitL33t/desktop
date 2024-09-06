@@ -396,3 +396,39 @@ export const getMetadataProvider = (url: string): MetadataGetter | void => {
 
   return streamingMetadataProviders[`${domain}.${tld}`]?.(url);
 };
+
+// Define the WorkerFile type
+type WorkerFile = {
+  album: string;
+  artist: string;
+  duration: number;
+  title: string;
+  url: string;
+};
+
+const addTracksToWebamp = async (webampInstance: WebampCI): Promise<void> => {
+  try {
+    // Fetch tracks from Cloudflare Worker
+    const response = await fetch(
+      "https://ogmusicfolder.trislit-52c.workers.dev/"
+    );
+    const files: WorkerFile[] = (await response.json()) as WorkerFile[];
+
+    // Format tracks to match Webamp's Track format
+    const tracks: Track[] = files.map((file) => ({
+      duration: file.duration,
+      metaData: {
+        album: file.album,
+        artist: file.artist,
+        title: file.title,
+      },
+      url: file.url,
+    }));
+
+    // Append tracks to the existing Webamp instance
+    webampInstance.appendTracks(tracks);
+  } catch (error) {
+    console.error("Error adding tracks to Webamp:", error);
+  }
+};
+export { addTracksToWebamp };

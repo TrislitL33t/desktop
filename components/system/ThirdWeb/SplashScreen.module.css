@@ -5,11 +5,25 @@
   align-items: center;
   height: 100vh;
   background-color: #1e1e1e;
+  background-image: url("/images/ogl33tsplash.png"); /* Path to your PNG image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #ffffff;
   font-family: Arial, sans-serif;
   text-align: center;
   opacity: 0;
   animation: fadeIn 1s forwards;
+}
+
+.splashScreen h1,
+.splashScreen p,
+.splashScreen .connectButtonWrapper,
+.splashScreen .enterText {
+  position: relative; /* Allows relative positioning */
+  transform: translateX(
+    -210px
+  ); /* Moves the text 50px to the left from center */
 }
 
 .splashScreen h1 {
@@ -22,8 +36,31 @@
   margin-bottom: 2rem;
 }
 
-.splashScreen .connectButton {
+.splashScreen .connectButtonWrapper {
   margin-top: 1.5rem;
+}
+
+/* Blocky "Enter" text with blinking cursor */
+.splashScreen .enterText {
+  font-size: 2rem;
+  font-family: "Courier New", monospace; /* Blocky text style */
+  color: limegreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splashScreen .cursor {
+  font-size: 2rem;
+  font-family: "Courier New", monospace;
+  color: limegreen;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes fadeIn {
