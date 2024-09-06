@@ -6,6 +6,8 @@ import { ConnectButton, useActiveWallet } from "thirdweb/react";
 import { checkAccessForNFTs } from "components/system/ThirdWeb/AccessContract"; // Updated import
 import { client, wallets } from "components/system/ThirdWeb/thirdWebClient";
 import styles from "components/system/ThirdWeb/SplashScreen.module.css";
+// Import playlistgenerator from playlistUtils.ts
+import PlaylistGenerator from "components/apps/Webamp/playlistUtils";
 
 interface SplashScreenProps {
   onConnect: () => void;
@@ -41,6 +43,8 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
 
         if (splashScreenAccess) {
           onConnect();
+          // Run the playlist generator after successful login
+          PlaylistGenerator({ walletAddress: accountDetails.address }); // Triggering the playlist generator
         } else {
           setError("You do not own the required OG L33Tpass.");
         }

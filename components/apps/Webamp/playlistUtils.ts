@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { checkAccessForNFTs } from "components/system/ThirdWeb/AccessContract";
 import useFileSystemContextState from "contexts/fileSystem/useFileSystemContextState";
 import { createM3uPlaylist } from "components/apps/Webamp/functions";
+// Import playlistgenerator from playlistUtils.ts
+// Adjust path as needed
 
 type WorkerFile = {
   album: string;
@@ -38,12 +40,12 @@ const savePlaylistFile = async (
   writeFile: (path: string, content: Buffer) => Promise<boolean>,
   updateFolder: (path: string) => Promise<void>
 ): Promise<void> => {
-  const filePath = "/Users/Music/OGPlaylist.m3u";
+  const filePath = "public/Users/Public/Music/OGPlaylist.m3u";
 
   const writeSuccess = await writeFile(filePath, Buffer.from(playlistContent));
 
   if (writeSuccess) {
-    await updateFolder("/Users/Music/");
+    await updateFolder("public/Users/Public/Music/");
     console.error("Playlist created successfully!");
   } else {
     console.error("Failed to write the playlist file.");
