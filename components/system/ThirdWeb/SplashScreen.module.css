@@ -16,6 +16,16 @@
   animation: fadeIn 1s forwards;
 }
 
+.splashScreen h1,
+.splashScreen p,
+.splashScreen .connectButtonWrapper,
+.splashScreen .enterText {
+  position: relative; /* Allows relative positioning */
+  transform: translateX(
+    -210px
+  ); /* Moves the text 50px to the left from center */
+}
+
 .splashScreen h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
@@ -26,7 +36,7 @@
   margin-bottom: 2rem;
 }
 
-.splashScreen .connectButton {
+.splashScreen .connectButtonWrapper {
   margin-top: 1.5rem;
 }
 
