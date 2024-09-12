@@ -1,6 +1,5 @@
 import { basename, dirname, join } from "path";
 import { useCallback, useMemo } from "react";
-import { WALLPAPER_MENU } from "components/system/Desktop/Wallpapers/constants";
 import { getIconByFileExtension } from "components/system/Files/FileEntry/functions";
 import { type FolderActions } from "components/system/Files/FileManager/useFolder";
 import {
@@ -13,12 +12,11 @@ import { useMenu } from "contexts/menu";
 import {
   type CaptureTriggerEvent,
   type ContextMenuCapture,
-  type MenuItem,
 } from "contexts/menu/useMenuContextState";
 import { useProcesses } from "contexts/process";
 import { useSession } from "contexts/session";
 import { useProcessesRef } from "hooks/useProcessesRef";
-import { useWebGPUCheck } from "hooks/useWebGPUCheck";
+// import { useWebGPUCheck } from "hooks/useWebGPUCheck";
 import {
   DESKTOP_PATH,
   FOLDER_ICON,
@@ -38,11 +36,11 @@ import {
   updateIconPositions,
 } from "utils/functions";
 
-const stopGlobalMusicVisualization = (): void =>
+/* const stopGlobalMusicVisualization = (): void =>
   window.WebampGlobal?.store.dispatch({
     enabled: false,
     type: "SET_MILKDROP_DESKTOP",
-  });
+  }); */
 
 const NEW_FOLDER = "New folder";
 const NEW_TEXT_DOCUMENT = "New Text Document.txt";
@@ -55,12 +53,12 @@ const updateSortBy =
     sortBy === value ? !isAscending : defaultIsAscending,
   ];
 
-const EASTER_EGG_CLICK_COUNT = 2;
+// const EASTER_EGG_CLICK_COUNT = 2;
 const CAPTURE_FPS = 30;
 const MIME_TYPE_VIDEO_WEBM = "video/webm";
 const MIME_TYPE_VIDEO_MP4 = "video/mp4";
 
-let triggerEasterEggCountdown = EASTER_EGG_CLICK_COUNT;
+// let triggerEasterEggCountdown = EASTER_EGG_CLICK_COUNT;
 
 let currentMediaStream: MediaStream | undefined;
 let currentMediaRecorder: MediaRecorder | undefined;
@@ -89,13 +87,13 @@ const useFolderContextMenu = (
   const {
     iconPositions,
     setForegroundId,
-    setWallpaper: setSessionWallpaper,
+    //   setWallpaper: setSessionWallpaper,
     setIconPositions,
     sortOrders,
     updateRecentFiles,
-    wallpaperImage,
+    //  wallpaperImage,
   } = useSession();
-  const setWallpaper = useCallback(
+  /*  const setWallpaper = useCallback(
     (wallpaper: string) => {
       if (wallpaper === "VANTA") {
         triggerEasterEggCountdown -= 1;
@@ -114,7 +112,7 @@ const useFolderContextMenu = (
       }
     },
     [setSessionWallpaper]
-  );
+  ); */
   const { minimize, open } = useProcesses();
   const updateSorting = useCallback(
     (value: SortBy | "", defaultIsAscending: boolean): void => {
@@ -237,7 +235,7 @@ const useFolderContextMenu = (
       }
     });
   }, [readFile, updateFolder, writeFile]);
-  const hasWebGPU = useWebGPUCheck();
+  // const hasWebGPU = useWebGPUCheck();
   const processesRef = useProcessesRef();
   const updateDesktopIconPositions = useCallback(
     (names: string[], event?: CaptureTriggerEvent) => {
@@ -396,9 +394,9 @@ const useFolderContextMenu = (
           ADD_FILE,
           ...(isFileSystemMappingSupported() ? [MAP_DIRECTORY] : []),
         ];
-        const isMusicVisualizationRunning =
-          document.querySelector("main .webamp-desktop canvas") instanceof
-          HTMLCanvasElement;
+        //  const isMusicVisualizationRunning =
+        //  document.querySelector("main .webamp-desktop canvas") instanceof
+        //  HTMLCanvasElement;
         const mountUrl = getMountUrl(url, rootFs?.mntMap || {});
         const isReadOnly =
           MOUNTABLE_EXTENSIONS.has(getExtension(url)) ||
@@ -445,7 +443,7 @@ const useFolderContextMenu = (
           ...(isDesktop
             ? [
                 MENU_SEPERATOR,
-                {
+                /* {
                   label: "Background",
                   menu: WALLPAPER_MENU.filter(
                     ({ requiresWebGPU }) => !requiresWebGPU || hasWebGPU
@@ -476,7 +474,7 @@ const useFolderContextMenu = (
                         ]
                       : []
                   ),
-                },
+                }, */
                 ...(canCapture
                   ? [
                       {
@@ -589,7 +587,7 @@ const useFolderContextMenu = (
       captureScreen,
       contextMenu,
       exists,
-      hasWebGPU,
+      //    hasWebGPU,
       isAscending,
       isDesktop,
       isStartMenu,
@@ -602,14 +600,14 @@ const useFolderContextMenu = (
       processesRef,
       rootFs?.mntMap,
       setForegroundId,
-      setWallpaper,
+      //   setWallpaper,
       sortBy,
       updateDesktopIconPositions,
       updateFolder,
       updateRecentFiles,
       updateSorting,
       url,
-      wallpaperImage,
+      //     wallpaperImage,
       writeFile,
     ]
   );
