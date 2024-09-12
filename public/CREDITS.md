@@ -89,6 +89,8 @@ This project is greatly augmented by code from the open source community. Thank 
 - [nostr-tools](https://github.com/nbd-wtf/nostr-tools)
 - [DOMPurify](https://github.com/cure53/DOMPurify)
 - [t-rex-runner](https://github.com/wayou/t-rex-runner)
+- [Thirdweb](https://github.com/thirdweb-dev)
+
 
 ## Services
 

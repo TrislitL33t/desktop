@@ -16,6 +16,7 @@ export const WALLPAPER_PATHS: Record<
   COASTAL_LANDSCAPE: () =>
     import("components/system/Desktop/Wallpapers/ShaderToy/CoastalLandscape"),
   HEXELLS: () => import("components/system/Desktop/Wallpapers/hexells"),
+  L33T: () => import("components/system/Desktop/Wallpapers/L33tLabs"),
   MATRIX: () => import("components/system/Desktop/Wallpapers/Matrix"),
   VANTA: () => import("components/system/Desktop/Wallpapers/vantaWaves"),
 };
@@ -66,6 +67,10 @@ export const WALLPAPER_MENU: WallpaperMenuItem[] = [
   {
     id: "HEXELLS",
     name: "Hexells",
+  },
+  {
+    id: "L33T",
+    name: "L33T",
   },
   {
     id: "MATRIX 2D",

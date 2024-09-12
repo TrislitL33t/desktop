@@ -2,7 +2,7 @@
   "name": "l33tdesktop",
   "version": "1.0.0",
   "description": "Desktop environment in the browser",
-  "author": "Trislit.io <Trislit@trislit.io> (https://trislit.io)",
+  "author": "Trislit <Trislit@L33tLabs.io> (https://L33tLabs.io)",
   "license": "MIT",
   "browserslist": [
     "defaults and supports es6 and not ie 11 and >1%"

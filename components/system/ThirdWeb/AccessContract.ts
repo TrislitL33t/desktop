@@ -1,15 +1,29 @@
 import { Alchemy, Network } from "alchemy-sdk";
 
+const networkMapping: Record<string, Network> = {
+  "base-mainnet": Network.BASE_MAINNET,
+  "base-sepolia": Network.BASE_SEPOLIA,
+  "eth-mainnet": Network.ETH_MAINNET,
+  "eth-sepolia": Network.ETH_SEPOLIA,
+  // Add any other networks you need
+};
+
+const selectedNetwork =
+  networkMapping[process.env.ALCHEMY_NETWORK || "base-sepolia"];
+
 const alchemy = new Alchemy({
   apiKey: process.env.ALCHEMY_API_KEY,
-  network: Network.BASE_SEPOLIA, // Specify the correct network
+  network: selectedNetwork || Network.BASE_SEPOLIA,
 });
 
 // Add more contract addresses here if you want to check multiple NFTs
 const nftContracts = {
-  // First NFT Contract Address
-  playlistAccess: "0xfa552ff246479cc487f98aca01a0001d5a869c47",
-  splashScreenAccess: "0xfa552ff246479cc487f98aca01a0001d5a869c47", // Second NFT Contract Address
+  playlistAccess:
+    process.env.PLAYLIST_ACCESS_CONTRACT ||
+    "0xfa552ff246479cc487f98aca01a0001d5a869c47",
+  splashScreenAccess:
+    process.env.SPLASHSCREEN_ACCESS_CONTRACT ||
+    "0xfa552ff246479cc487f98aca01a0001d5a869c47",
 };
 
 // Function to check NFT ownership for a specific contract

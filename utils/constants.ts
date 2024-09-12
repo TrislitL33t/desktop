@@ -339,9 +339,9 @@ export const PACKAGE_DATA = {
     email: "Trislit@trislit.io",
     name: "Trislit",
     npub: "npub10uc7hg6wdxhhd7ee8x9c5lr9d0ux7272rv2m0mc03ds54q7quxjss02r3p",
-    url: "https://trislit.io",
+    url: "https://L33Tlabs.io",
   },
-  description: "Desktop environment in the browser",
+  description: "Desktop environment in the browser for L33tLabs community",
   license: "MIT",
   version: "2.0.0",
 };
