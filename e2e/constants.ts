@@ -158,7 +158,7 @@ export const FOLDER_MENU_ITEMS: MenuItems = {
 };
 export const DESKTOP_MENU_ITEMS: MenuItems = {
   ...FOLDER_MENU_ITEMS,
-  Background: true,
+  // Background: true,
   "Capture screen": (browserName: string): boolean =>
     !MEDIA_RECORDER_HEADLESS_NOT_SUPPORTED_BROWSERS.has(browserName),
   Inspect: true,
