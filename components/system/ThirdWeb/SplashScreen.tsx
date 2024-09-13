@@ -84,11 +84,13 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
           <ConnectButton
             client={client}
             connectModal={{
-              privacyPolicyUrl: "https://pplink.com",
+              privacyPolicyUrl:
+                "https://ipfs.io/ipfs/Qmccwy7tRLU8rNJv3C6ZuAyiigoDtwSLb2Rfo6gjHxycPL",
               requireApproval: true,
               showThirdwebBranding: false,
               size: "compact",
-              termsOfServiceUrl: "https://toslink.com",
+              termsOfServiceUrl:
+                "https://ipfs.io/ipfs/QmNRg31wsF4TJDJ6BApyaDiCZBjMf5K19cJUDVj57ijPrc",
             }}
             wallets={wallets}
           />
@@ -108,11 +110,13 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
         <ConnectButton
           client={client}
           connectModal={{
-            privacyPolicyUrl: "https://pplink.com",
+            privacyPolicyUrl:
+              "https://ipfs.io/ipfs/Qmccwy7tRLU8rNJv3C6ZuAyiigoDtwSLb2Rfo6gjHxycPL",
             requireApproval: true,
             showThirdwebBranding: false,
             size: "compact",
-            termsOfServiceUrl: "https://toslink.com",
+            termsOfServiceUrl:
+              "https://ipfs.io/ipfs/QmNRg31wsF4TJDJ6BApyaDiCZBjMf5K19cJUDVj57ijPrc",
           }}
           wallets={wallets}
         />
