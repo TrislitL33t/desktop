@@ -189,28 +189,32 @@ export const START_BUTTON_MENU_ITEMS = [
 
 export const START_MENU_APPS = [
   /^Browser$/,
-  /^DevTools$/,
-  /^Marked$/,
-  /^Monaco Editor$/,
-  /^Paint$/,
-  /^PDF$/,
-  /^Photo Viewer$/,
-  /^Terminal$/,
-  /^TinyMCE$/,
-  /^Video Player$/,
+  //  /^DevTools$/,
+  //  /^Marked$/,
+  //  /^Monaco Editor$/,
+  //  /^Paint$/,
+  //  /^PDF$/,
+  //  /^Photo Viewer$/,
+  //  /^Terminal$/,
+  //  /^TinyMCE$/,
+  //  /^Video Player$/,
   /^Vim$/,
   /^Webamp$/,
 ];
 
 export const START_MENU_FOLDERS = {
-  Emulators: [
+  /* Emulators: [
     /^BoxedWine$/,
     /^EmulatorJS$/,
     /^js-dos$/,
     /^Ruffle$/,
     /^Virtual x86$/,
+  ], */
+  Games: [
+    /^ClassiCube$/,
+    /^DX-Ball$/,
+    /* /^Quake III Arena$/, */ /^Space Cadet$/,
   ],
-  Games: [/^ClassiCube$/, /^DX-Ball$/, /^Quake III Arena$/, /^Space Cadet$/],
 };
 
 export const TEST_APP_CONTAINER_APP = "Marked";
