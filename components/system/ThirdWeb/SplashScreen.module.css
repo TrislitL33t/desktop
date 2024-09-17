@@ -5,7 +5,7 @@
   align-items: center;
   height: 100vh;
   background-color: #1e1e1e;
-  background-image: url("/images/ogl33tsplash.png"); /* Path to your PNG image */
+  background-image: url("/System/Icons/common/ogl33tsplash.png"); /* Path to your PNG image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,15 +15,20 @@
   opacity: 0;
   animation: fadeIn 1s forwards;
 }
+.splashScreen a:link {
+  color: #00ff00; /* Replace with your desired link color */
+  text-decoration: underline;
+}
 
+/* Styles for visited links */
+.splashScreen a:visited {
+  color: #04a030; /* Replace with your desired visited link color */
+}
 .splashScreen h1,
 .splashScreen p,
 .splashScreen .connectButtonWrapper,
 .splashScreen .enterText {
   position: relative; /* Allows relative positioning */
-  transform: translateX(
-    -210px
-  ); /* Moves the text 50px to the left from center */
 }
 
 .splashScreen h1 {
@@ -38,6 +43,18 @@
 
 .splashScreen .connectButtonWrapper {
   margin-top: 1.5rem;
+}
+
+.contentWrapper {
+  transform: translateX(-200px);
+}
+
+.animatedGif {
+  max-width: 75%;
+  height: auto;
+  margin: 20px 0;
+  display: block;
+  margin: 20px auto;
 }
 
 /* Blocky "Enter" text with blinking cursor */

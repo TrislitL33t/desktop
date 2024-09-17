@@ -8,6 +8,7 @@ import { client, wallets } from "components/system/ThirdWeb/thirdWebClient";
 import styles from "components/system/ThirdWeb/SplashScreen.module.css";
 // Import playlistgenerator from playlistUtils.ts
 import PlaylistGenerator from "components/apps/Webamp/playlistUtils";
+import animatedGif from "public/System/Icons/common/WELCOME_L33T.gif";
 
 interface SplashScreenProps {
   onConnect: () => void;
@@ -46,7 +47,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
           // Run the playlist generator after successful login
           PlaylistGenerator({ walletAddress: accountDetails.address }); // Triggering the playlist generator
         } else {
-          setError("You do not own the required OG L33Tpass.");
+          setError("Cannot find an OG L33Tpass in the connected wallet.");
         }
       } catch (error_) {
         console.error("Error checking access:", error_);
@@ -73,14 +74,59 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
   if (error) {
     return (
       <div className={`${styles.splashScreen} ${styles.fadeIn}`}>
-        <h1>Welcome L33T</h1>
-        <p>You need an OG L33Tpass to log in.</p>
+        <div className={styles.contentWrapper}>
+          <img
+            alt="Welcome L33T"
+            className={styles.animatedGif}
+            src={animatedGif.src}
+          />
+          <p>
+            You need an{" "}
+            <a href="https://opensea.io/collection/og-l33t-pass">OG L33Tpass</a>{" "}
+            to log in.
+          </p>
+          <div className={styles.enterText}>
+            Enter<span className={styles.cursor}>|</span>
+          </div>
+          <div className={styles.connectButtonWrapper}>
+            <div>{error}</div>
+
+            <ConnectButton
+              client={client}
+              connectModal={{
+                privacyPolicyUrl:
+                  "https://ipfs.io/ipfs/Qmccwy7tRLU8rNJv3C6ZuAyiigoDtwSLb2Rfo6gjHxycPL",
+                requireApproval: true,
+                showThirdwebBranding: false,
+                size: "compact",
+                termsOfServiceUrl:
+                  "https://ipfs.io/ipfs/QmNRg31wsF4TJDJ6BApyaDiCZBjMf5K19cJUDVj57ijPrc",
+              }}
+              wallets={wallets}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${styles.splashScreen} ${styles.fadeIn}`}>
+      <div className={styles.contentWrapper}>
+        <p>
+          You need an{" "}
+          <a href="https://opensea.io/collection/og-l33t-pass">OG L33Tpass</a>{" "}
+          to log in.
+          <img
+            alt="Welcome L33T"
+            className={styles.animatedGif}
+            src={animatedGif.src}
+          />
+        </p>
         <div className={styles.enterText}>
           Enter<span className={styles.cursor}>|</span>
         </div>
         <div className={styles.connectButtonWrapper}>
-          <div>{error}</div>
-
           <ConnectButton
             client={client}
             connectModal={{
@@ -94,34 +140,11 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
             }}
             wallets={wallets}
           />
+
+          {walletAddress
+            ? `Connected: ${walletAddress}`
+            : "No wallet connected"}
         </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className={`${styles.splashScreen} ${styles.fadeIn}`}>
-      <h1>Welcome L33T</h1>
-      <p>You need an OG L33Tpass to log in.</p>
-      <div className={styles.enterText}>
-        Enter<span className={styles.cursor}>|</span>
-      </div>
-      <div className={styles.connectButtonWrapper}>
-        <ConnectButton
-          client={client}
-          connectModal={{
-            privacyPolicyUrl:
-              "https://ipfs.io/ipfs/Qmccwy7tRLU8rNJv3C6ZuAyiigoDtwSLb2Rfo6gjHxycPL",
-            requireApproval: true,
-            showThirdwebBranding: false,
-            size: "compact",
-            termsOfServiceUrl:
-              "https://ipfs.io/ipfs/QmNRg31wsF4TJDJ6BApyaDiCZBjMf5K19cJUDVj57ijPrc",
-          }}
-          wallets={wallets}
-        />
-
-        {walletAddress ? `Connected: ${walletAddress}` : "No wallet connected"}
       </div>
     </div>
   );
