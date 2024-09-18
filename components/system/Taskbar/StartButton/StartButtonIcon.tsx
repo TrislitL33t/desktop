@@ -1,52 +1,16 @@
 import { memo } from "react";
+import defaultImage from "components/system/Taskbar/StartButton/startbutton2.png"; // Default PNG image
+import hoverImage from "components/system/Taskbar/StartButton/startbuttondown2.png"; // Hover PNG image
 
-const StartButtonIcon = memo(() => (
-  <svg height="23" version="1.1" width="51" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M0 0 C16.5 0 33 0 50 0 C50 7.26 50 14.52 50 22 C33.5 22 17 22 0 22 C0 14.74 0 7.48 0 0 Z M2 2 C2 7.94 2 13.88 2 20 C17.18 20 32.36 20 48 20 C48 14.06 48 8.12 48 2 C32.82 2 17.64 2 2 2 Z "
-      fill="#000000"
-      transform="translate(0,1)"
-    />
-    <path
-      d="M0 0 C1 1 1 1 1.09765625 3.72265625 C1.08605469 4.82480469 1.07445312 5.92695313 1.0625 7.0625 C1.05347656 8.16722656 1.04445313 9.27195312 1.03515625 10.41015625 C1.02355469 11.26480469 1.01195312 12.11945312 1 13 C-0.010625 12.814375 -1.02125 12.62875 -2.0625 12.4375 C-5.97914227 12.00231753 -9.14244663 12.29146979 -13 13 C-12.67 12.34 -12.34 11.68 -12 11 C-12 10.01 -12 9.02 -12 8 C-12 6 -12 4 -12 2 C-7.54764818 -0.65020941 -5.04054971 -1.40666504 0 0 Z "
-      fill="#201416"
-      transform="translate(19,6)"
-    />
-    <path
-      d="M0 0 C16.17 0 32.34 0 49 0 C48.67 0.66 48.34 1.32 48 2 C32.82 2 17.64 2 2 2 C2 7.94 2 13.88 2 20 C1.34 20.33 0.68 20.66 0 21 C0 14.07 0 7.14 0 0 Z "
-      fill="#EDEDED"
-      transform="translate(0,1)"
-    />
-    <path
-      d="M0 0 C1.65 0.33 3.3 0.66 5 1 C4.01 1.495 4.01 1.495 3 2 C2.34 1.67 1.68 1.34 1 1 C1 1.99 1 2.98 1 4 C2.32 4.33 3.64 4.66 5 5 C4.67 6.32 4.34 7.64 4 9 C2.35 8.67 0.7 8.34 -1 8 C-0.34 7.67 0.32 7.34 1 7 C1.66 7.33 2.32 7.66 3 8 C3 7.01 3 6.02 3 5 C1.68 4.67 0.36 4.34 -1 4 C-0.67 2.68 -0.34 1.36 0 0 Z "
-      fill="#000000"
-      transform="translate(22,7)"
-    />
-    <path
-      d="M0 0 C1.65 0.33 3.3 0.66 5 1 C5 2.65 5 4.3 5 6 C3.35 6 1.7 6 0 6 C0 4 0 2 0 0 Z M1 3 C1 3.66 1 4.32 1 5 C1.66 5 2.32 5 3 5 C3 4.34 3 3.68 3 3 C2.34 3 1.68 3 1 3 Z "
-      fill="#000000"
-      transform="translate(34,10)"
-    />
-    <path
-      d="M0 0 C0.66 0 1.32 0 2 0 C2.33 2.31 2.66 4.62 3 7 C2.01 7 1.02 7 0 7 C0 4.69 0 2.38 0 0 Z "
-      fill="#000000"
-      transform="translate(44,8)"
-    />
-    <path
-      d="M0 0 C0.66 0 1.32 0 2 0 C2.33 2.31 2.66 4.62 3 7 C2.01 7 1.02 7 0 7 C0 4.69 0 2.38 0 0 Z "
-      fill="#000000"
-      transform="translate(29,8)"
-    />
-    <path
-      d="M0 0 C0.99 0.33 1.98 0.66 3 1 C2.67 2.65 2.34 4.3 2 6 C1.34 6 0.68 6 0 6 C0 4.02 0 2.04 0 0 Z "
-      fill="#000000"
-      transform="translate(40,10)"
-    />
-    <path d="" fill="#000000" transform="translate(0,0)" />
-    <path d="" fill="#0000FF" transform="translate(0,0)" />
-    <path d="" fill="#FF0000" transform="translate(0,0)" />
-    <path d="" fill="#000000" transform="translate(0,0)" />
-  </svg>
+type StartButtonIconProps = {
+  isHovered: boolean;
+};
+
+const StartButtonIcon = memo(({ isHovered }: StartButtonIconProps) => (
+  <img
+    alt="Start Button"
+    src={isHovered ? hoverImage.src : defaultImage.src} // Use '.src' if needed
+    style={{ height: "32px", padding: "0px 5px 0px 5px", width: "92px" }}
+  />
 ));
-
 export default StartButtonIcon;

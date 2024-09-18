@@ -2,7 +2,7 @@ import { memo, useCallback, useState } from "react";
 import dynamic from "next/dynamic";
 import { AnimatePresence } from "framer-motion";
 import Clock from "components/system/Taskbar/Clock";
-import SearchButton from "components/system/Taskbar/Search/SearchButton";
+// import SearchButton from "components/system/Taskbar/Search/SearchButton";
 import StartButton from "components/system/Taskbar/StartButton";
 import StyledTaskbar from "components/system/Taskbar/StyledTaskbar";
 import TaskbarEntries from "components/system/Taskbar/TaskbarEntries";
@@ -51,10 +51,10 @@ const Taskbar: FC = () => {
           startMenuVisible={startMenuVisible}
           toggleStartMenu={toggleStartMenu}
         />
-        <SearchButton
+        {/* <SearchButton
           searchVisible={searchVisible}
           toggleSearch={toggleSearch}
-        />
+        /> */}
         <TaskbarEntries clockWidth={clockWidth} />
         <Clock
           setClockWidth={setClockWidth}
