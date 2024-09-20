@@ -82,7 +82,9 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
           />
           <p>
             You need an{" "}
-            <a href="https://opensea.io/collection/og-l33t-pass">OG L33Tpass</a>{" "}
+            <a href="https://opensea.io/collection/og-l33t-pass">
+              OG L33T pass
+            </a>{" "}
             to log in.
           </p>
           <div className={styles.enterText}>
@@ -115,7 +117,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onConnect }) => {
       <div className={styles.contentWrapper}>
         <p>
           You need an{" "}
-          <a href="https://opensea.io/collection/og-l33t-pass">OG L33Tpass</a>{" "}
+          <a href="https://opensea.io/collection/og-l33t-pass">OG L33T pass</a>{" "}
           to log in.
           <img
             alt="Welcome L33T"
