@@ -9,21 +9,21 @@ const networkMapping: Record<string, Network> = {
 };
 
 const selectedNetwork =
-  networkMapping[process.env.ALCHEMY_NETWORK || "base-sepolia"];
+  networkMapping[process.env.ALCHEMY_NETWORK || "base-MAINNET"];
 
 const alchemy = new Alchemy({
   apiKey: process.env.ALCHEMY_API_KEY,
-  network: selectedNetwork || Network.BASE_SEPOLIA,
+  network: selectedNetwork || Network.BASE_MAINNET,
 });
 
 // Add more contract addresses here if you want to check multiple NFTs
 const nftContracts = {
   playlistAccess:
     process.env.PLAYLIST_ACCESS_CONTRACT ||
-    "0xfa552ff246479cc487f98aca01a0001d5a869c47",
+    "0x54cA9A5dd3725B81000b6eC0Cffa1B4651a4D264",
   splashScreenAccess:
     process.env.SPLASHSCREEN_ACCESS_CONTRACT ||
-    "0xfa552ff246479cc487f98aca01a0001d5a869c47",
+    "0x54cA9A5dd3725B81000b6eC0Cffa1B4651a4D264",
 };
 
 // Function to check NFT ownership for a specific contract
