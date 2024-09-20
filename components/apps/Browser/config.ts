@@ -25,36 +25,26 @@ export const bookmarks: Bookmark[] = [
     name: "Index of /",
     url: "http://localhost/",
   },
-  {
-    icon: "/System/Icons/Favicons/dir.webp",
-    name: "Root",
-    url: "http://localhost/documents",
-  },
-  DINO_GAME,
-  {
+  /* DINO_GAME,
+   {
     icon: "/System/Icons/Favicons/google.webp",
     name: "Google",
     url: "https://www.google.com/webhp?igu=1",
-  },
+  }, */
   {
     icon: "/System/Icons/Favicons/wikipedia.webp",
     name: "Wikipedia",
     url: "https://www.wikipedia.org/",
   },
   {
-    icon: "/System/Icons/Favicons/archive.webp",
-    name: "Internet Archive",
-    url: "https://trislit.io/",
+    icon: "/System/Icons/Favicons/l33t.webp",
+    name: "L33TLabs",
+    url: "https://www.l33tlabs.io/",
   },
   {
-    icon: "/System/Icons/Favicons/win96.webp",
-    name: "Windows 96",
-    url: "https://windows96.net/",
-  },
-  {
-    icon: "/System/Icons/Favicons/aos.webp",
-    name: "AaronOS",
-    url: "https://aaronos.dev/",
+    icon: "/System/Icons/Favicons/hamster.webp",
+    name: "Hamster Dance",
+    url: "https://www.webhamster.com/",
   },
 ];
 

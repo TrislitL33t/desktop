@@ -23,6 +23,7 @@ const StartButton: FC<StartButtonProps> = ({
 }) => {
   const [preloaded, setPreloaded] = useState(false);
   const initalizedPreload = useRef(false);
+  const [isHovered, setIsHovered] = useState(false);
   const preloadIcons = useCallback(async (): Promise<void> => {
     if (initalizedPreload.current) return;
     initalizedPreload.current = true;
@@ -90,13 +91,17 @@ const StartButton: FC<StartButtonProps> = ({
     <StyledTaskbarButton
       $active={startMenuVisible}
       onClick={onClick}
-      onMouseOver={preloaded ? undefined : preloadIcons}
+      onMouseOut={() => setIsHovered(false)}
+      onMouseOver={() => {
+        if (!preloaded) preloadIcons();
+        setIsHovered(true);
+      }}
       $highlight
       {...DIV_BUTTON_PROPS}
       {...label(START_BUTTON_TITLE)}
       {...useTaskbarContextMenu(true)}
     >
-      <StartButtonIcon />
+      <StartButtonIcon isHovered={isHovered} />
     </StyledTaskbarButton>
   );
 };
