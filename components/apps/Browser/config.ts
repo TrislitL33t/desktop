@@ -25,12 +25,12 @@ export const bookmarks: Bookmark[] = [
     name: "Index of /",
     url: "http://localhost/",
   },
-  DINO_GAME,
-  {
+  /* DINO_GAME,
+   {
     icon: "/System/Icons/Favicons/google.webp",
     name: "Google",
     url: "https://www.google.com/webhp?igu=1",
-  },
+  }, */
   {
     icon: "/System/Icons/Favicons/wikipedia.webp",
     name: "Wikipedia",
@@ -39,7 +39,7 @@ export const bookmarks: Bookmark[] = [
   {
     icon: "/System/Icons/Favicons/l33t.webp",
     name: "L33TLabs",
-    url: "https://l33tlabs.io/",
+    url: "https://www.l33tlabs.io/",
   },
   {
     icon: "/System/Icons/Favicons/hamster.webp",
