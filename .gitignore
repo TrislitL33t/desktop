@@ -14,15 +14,18 @@ public/robots.txt
 public/rss.xml
 public/sitemap.xml
 public/.index/*
-public/Users/Public/**
+!public/Users/Public/**
 
 !public/Users/**/desktop.ini
 !public/Users/Public/Desktop
 !public/Users/Public/Desktop/My PC.url
 !public/Users/Public/Desktop/Public.url
 !public/Users/Public/Desktop/Browser.url
+!public/Users/Public/Desktop/CypherpunkManifesto.txt
+!public/Users/Public/Desktop/Welcome to the Cypherpunks.mp3
 !public/Users/Public/Documents
 !public/Users/Public/Music
+!public/Users/Public/Music/Mania Music Group - Rhymes By Kane Thievery Corporation Edition/**
 !public/Users/Public/Pictures
 !public/Users/Public/Pictures/prompts.json
 !public/Users/Public/Pictures/slideshow.json
