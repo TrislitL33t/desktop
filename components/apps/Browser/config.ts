@@ -37,11 +37,6 @@ export const bookmarks: Bookmark[] = [
     url: "https://www.wikipedia.org/",
   },
   {
-    icon: "/System/Icons/Favicons/l33t.webp",
-    name: "L33TLabs",
-    url: "https://www.l33tlabs.io/",
-  },
-  {
     icon: "/System/Icons/Favicons/hamster.webp",
     name: "Hamster Dance",
     url: "https://www.webhamster.com/",
