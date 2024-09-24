@@ -1,7 +1,10 @@
 // pages/_app.tsx
+
 import { type AppProps } from "next/app";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThirdwebProvider } from "thirdweb/react";
+import { useRouter } from "next/router";
+import * as gtag from "lib/gtag";
 import { ErrorBoundary } from "components/pages/ErrorBoundary";
 import Metadata from "components/pages/Metadata";
 import StyledApp from "components/pages/StyledApp";
@@ -16,6 +19,21 @@ import { WalletProvider } from "components/system/ThirdWeb/WalletContext";
 
 const App = ({ Component, pageProps }: AppProps): React.ReactElement => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: string): void => {
+      gtag.pageview(url);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("hashChangeComplete", handleRouteChange);
+
+    return (): void => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("hashChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <ThirdwebProvider>
