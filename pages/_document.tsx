@@ -1,3 +1,5 @@
+// _document.tsx
+
 import NextDocument, {
   type DocumentContext,
   type DocumentInitialProps,
@@ -21,11 +23,11 @@ const withStyledComponents = async (
         enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
       });
 
-    const { styles, ...initialProps } = await NextDocument.getInitialProps(ctx);
+    const initialProps = await NextDocument.getInitialProps(ctx);
 
     return {
       ...initialProps,
-      styles: [styles, sheet.getStyleElement()],
+      styles: [initialProps.styles, sheet.getStyleElement()],
     };
   } finally {
     sheet.seal();
@@ -39,10 +41,38 @@ class Document extends NextDocument {
     return withStyledComponents(ctx);
   }
 
-  public render(): React.JSX.Element {
+  public render(): React.ReactElement {
+    const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
     return (
       <Html lang={DEFAULT_LOCALE}>
-        <Head />
+        <Head>
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          {measurementId && (
+            <>
+              <script
+                src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+                async
+              />
+              <script
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                  __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    window.gtag = window.gtag || function(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${measurementId}', {
+                      page_path: window.location.pathname,
+                      anonymize_ip: true,
+                    });
+                  `,
+                }}
+              />
+            </>
+          )}
+          {/* Existing Head content can remain here */}
+        </Head>
         <body>
           <Main />
           <NextScript />
