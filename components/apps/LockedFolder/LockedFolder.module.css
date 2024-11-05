@@ -1,0 +1,35 @@
+/* src/components/apps/LockedFolder/LockedFolder.css */
+
+.lockedfolder-header {
+  /* Optional: Additional header styling */
+}
+
+.lockedfolder-title {
+  /* Optional: Additional title styling */
+}
+
+.lockedfolder-content {
+  /* Optional: Additional content styling */
+}
+
+.loading-spinner {
+  /* Optional: Additional spinner styling */
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+}

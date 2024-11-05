@@ -110,6 +110,17 @@ const directory: Processes = {
     lockAspectRatio: true,
     title: "js-dos v7",
   },
+  LockedFolder: {
+    Component: dynamic(() => import("components/apps/LockedFolder")),
+    backgroundColor: "#FFF",
+    defaultSize: {
+      height: 600,
+      width: 800,
+    },
+    icon: "/System/Icons/lock.png",
+    singleton: true,
+    title: "Locked Folder",
+  },
   Marked: {
     Component: dynamic(() => import("components/apps/Marked")),
     backgroundColor: "#FFF",
